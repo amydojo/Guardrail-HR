@@ -1,0 +1,601 @@
+/**
+ * Guardrail HR Template Document Styles
+ * Premium print-ready CSS matching GUARDRAIL_TEMPLATE_SPEC.md
+ */
+
+/* ============================================================================
+   BASE DOCUMENT STYLES
+   ============================================================================ */
+
+.template-document {
+  --template-font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  --template-page-bg: #ffffff;
+  --template-text-1: #1a1a1a;
+  --template-text-2: #2d2d2d;
+  --template-text-3: #737373;
+  --template-border-1: #e5e5e5;
+  --template-border-2: #f0f0f0;
+  --template-surface: #fafafa;
+  --template-callout-bg: #f9fafb;
+  --template-accent: #5b6ff5;
+  --template-shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --template-shadow-md: 0 1px 3px rgba(0,0,0,0.06);
+  
+  font-family: var(--template-font-family);
+  background: var(--template-page-bg);
+  color: var(--template-text-2);
+}
+
+/* Templates always render with white background (print-ready) regardless of app theme */
+
+/* ============================================================================
+   PAGE SETUP
+   ============================================================================ */
+
+.template-page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 0 auto 32px;
+  padding: 1in;
+  background: var(--template-page-bg);
+  box-shadow: var(--template-shadow-md);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.template-document--a4 .template-page {
+  width: 8.27in;
+  min-height: 11.69in;
+}
+
+/* Screen-only styling */
+@media screen {
+  .template-page {
+    border: 1px solid var(--template-border-1);
+    border-radius: 4px;
+  }
+}
+
+/* Print page setup */
+@media print {
+  .template-document {
+    background: white;
+  }
+  
+  .template-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 1in;
+    box-shadow: none;
+    border: none;
+    page-break-after: always;
+  }
+  
+  .template-page:last-child {
+    page-break-after: auto;
+  }
+  
+  @page {
+    size: letter;
+    margin: 1in;
+  }
+  
+  .template-document--a4 @page {
+    size: A4;
+    margin: 1in;
+  }
+}
+
+/* ============================================================================
+   HEADER & FOOTER
+   ============================================================================ */
+
+.template-header {
+  position: absolute;
+  top: 0.5in;
+  left: 1in;
+  right: 1in;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--template-text-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--template-border-1);
+}
+
+.template-header__left {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.template-header__right {
+  color: var(--template-text-3);
+}
+
+.template-footer {
+  position: absolute;
+  bottom: 0.5in;
+  left: 1in;
+  right: 1in;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: var(--template-text-3);
+  padding-top: 12px;
+  border-top: 1px solid var(--template-border-1);
+}
+
+.template-footer__left {
+  font-weight: 500;
+}
+
+.template-footer__right {
+  color: var(--template-text-3);
+}
+
+/* ============================================================================
+   CONTENT AREA
+   ============================================================================ */
+
+.template-content {
+  padding-top: 48px; /* Space for header */
+  min-height: calc(11in - 2in - 48px - 40px); /* Full page minus padding and header/footer */
+  padding-bottom: 56px; /* Space for footer */
+}
+
+.template-document--a4 .template-content {
+  min-height: calc(11.69in - 2in - 48px - 40px);
+}
+
+/* ============================================================================
+   COVER PAGE
+   ============================================================================ */
+
+.template-page--cover .template-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 180px;
+}
+
+.template-cover {
+  text-align: center;
+  max-width: 500px;
+}
+
+.template-cover__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--template-text-1);
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.template-cover__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.template-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--template-surface);
+  border: 1px solid var(--template-border-1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--template-text-2);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================================
+   SECTION HEADERS
+   ============================================================================ */
+
+.template-section-header {
+  margin-bottom: 16px;
+}
+
+.template-section-header--level-1 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.template-section-header--level-2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.template-section-header--level-3 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.template-section-header__title {
+  font-weight: 700;
+  color: var(--template-text-1);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.template-section-header--level-1 .template-section-header__title {
+  font-size: 20px;
+}
+
+.template-section-header--level-2 .template-section-header__title {
+  font-size: 16px;
+}
+
+.template-section-header--level-3 .template-section-header__title {
+  font-size: 14px;
+}
+
+.template-section-header__number {
+  color: var(--template-accent);
+  font-weight: 700;
+}
+
+.template-section-header__rule {
+  height: 2px;
+  background: var(--template-border-1);
+  margin-top: 12px;
+  border-radius: 1px;
+}
+
+/* ============================================================================
+   CALLOUT BOX
+   ============================================================================ */
+
+.template-callout {
+  background: var(--template-callout-bg);
+  border: 1px solid var(--template-border-1);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.template-callout__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.template-callout__icon {
+  display: flex;
+  align-items: center;
+  color: var(--template-accent);
+}
+
+.template-callout__label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--template-text-1);
+  letter-spacing: 0.01em;
+}
+
+.template-callout__content {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--template-text-2);
+}
+
+.template-callout__content p {
+  margin: 0;
+}
+
+.template-callout__content p + p {
+  margin-top: 8px;
+}
+
+/* ============================================================================
+   EDITABLE FIELD ROW
+   ============================================================================ */
+
+.template-field-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.template-field-row__label {
+  font-weight: 600;
+  color: var(--template-text-2);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.template-field-row__token {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--template-surface);
+  border: 1px solid var(--template-border-1);
+  border-radius: 4px;
+  color: var(--template-text-1);
+  font-weight: 500;
+  min-height: 24px;
+  display: inline-block;
+}
+
+.template-field-row__token--empty {
+  color: var(--template-text-3);
+  font-style: italic;
+  background: var(--template-border-2);
+}
+
+/* ============================================================================
+   CHECKBOX ROW
+   ============================================================================ */
+
+.template-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.template-checkbox-row__box {
+  font-size: 16px;
+  color: var(--template-text-2);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.template-checkbox-row__label {
+  flex: 1;
+  color: var(--template-text-2);
+}
+
+/* ============================================================================
+   SIGNATURE BLOCK
+   ============================================================================ */
+
+.template-signature-block {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.template-signature-block__row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.template-signature-block__field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.template-signature-block__field--date {
+  flex: 0 0 160px;
+}
+
+.template-signature-block__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--template-text-2);
+}
+
+.template-signature-block__line {
+  border-bottom: 1px solid var(--template-text-2);
+  height: 32px;
+  display: block;
+}
+
+.template-signature-block__line--signature {
+  min-width: 240px;
+}
+
+.template-signature-block__line--date {
+  min-width: 120px;
+}
+
+.template-signature-block__name {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.template-signature-block__name .template-field-row__token {
+  display: block;
+  width: 100%;
+}
+
+/* ============================================================================
+   VERSION HISTORY TABLE
+   ============================================================================ */
+
+.template-version-history {
+  margin: 24px 0;
+}
+
+.template-version-history__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--template-text-1);
+  margin: 0 0 12px 0;
+}
+
+.template-version-history__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.template-version-history__table thead {
+  background: var(--template-surface);
+  border: 1px solid var(--template-border-1);
+}
+
+.template-version-history__table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 600;
+  color: var(--template-text-1);
+  border-bottom: 1px solid var(--template-border-1);
+}
+
+.template-version-history__table td {
+  padding: 10px 12px;
+  color: var(--template-text-2);
+  border-bottom: 1px solid var(--template-border-2);
+  vertical-align: top;
+}
+
+.template-version-history__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.template-version-history__version {
+  font-weight: 600;
+  color: var(--template-accent);
+  white-space: nowrap;
+}
+
+.template-version-history__date {
+  white-space: nowrap;
+}
+
+.template-version-history__changes ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.template-version-history__changes li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   TOKEN INLINE
+   ============================================================================ */
+
+.template-token {
+  padding: 2px 6px;
+  background: var(--template-surface);
+  border: 1px solid var(--template-border-1);
+  border-radius: 3px;
+  color: var(--template-text-1);
+  font-weight: 500;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.template-token--empty {
+  color: var(--template-text-3);
+  font-style: italic;
+  background: var(--template-border-2);
+}
+
+/* ============================================================================
+   PARAGRAPH
+   ============================================================================ */
+
+.template-paragraph {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--template-text-2);
+  margin: 0 0 12px 0;
+  text-align: justify;
+}
+
+/* ============================================================================
+   LISTS
+   ============================================================================ */
+
+.template-ordered-list,
+.template-unordered-list {
+  margin: 12px 0;
+  padding-left: 24px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--template-text-2);
+}
+
+.template-ordered-list {
+  list-style-type: decimal;
+}
+
+.template-unordered-list {
+  list-style-type: disc;
+}
+
+.template-list-item {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.template-list-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Strong and emphasis */
+.template-list-item strong,
+.template-paragraph strong {
+  font-weight: 600;
+  color: var(--template-text-1);
+}
+
+.template-list-item em,
+.template-paragraph em {
+  font-style: italic;
+}
+
+/* ============================================================================
+   PRINT OPTIMIZATIONS
+   ============================================================================ */
+
+@media print {
+  /* Ensure proper fonts */
+  .template-document {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Avoid breaking elements */
+  .template-section-header,
+  .template-callout,
+  .template-signature-block,
+  .template-version-history {
+    page-break-inside: avoid;
+  }
+  
+  /* Remove screen-only elements */
+  .template-page {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+  }
+  
+  /* Ensure text is fully black for print */
+  .template-paragraph,
+  .template-list-item {
+    color: #000000;
+  }
+}
+
+/* Ensure proper contrast ratios */
+@media (prefers-contrast: more) {
+  .template-document {
+    --template-text-2: #000000;
+    --template-text-3: #4d4d4d;
+    --template-border-1: #737373;
+  }
+}

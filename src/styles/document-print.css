@@ -1,0 +1,302 @@
+/**
+ * Document Print Stylesheet
+ * Optimized for legal document printing with proper page breaks, margins, and header/footer preservation
+ * Supports US Letter (8.5 × 11 in) and A4 (210 × 297 mm)
+ */
+
+@media print {
+  /* Page setup */
+  @page {
+    size: letter; /* US Letter by default */
+    margin: 0; /* We handle margins internally */
+  }
+
+  @page :first {
+    margin: 0;
+  }
+
+  /* A4 variant (activated via class on body or container) */
+  .paper-a4 {
+    @page {
+      size: A4;
+    }
+  }
+
+  /* Global print resets */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: white !important;
+  }
+
+  /* Document page */
+  .document-page {
+    page-break-after: always;
+    page-break-inside: avoid;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    width: 100% !important;
+    min-height: 11in !important; /* US Letter height */
+    max-width: 8.5in !important; /* US Letter width */
+  }
+
+  .document-page:last-child {
+    page-break-after: auto;
+  }
+
+  /* A4 dimensions */
+  .paper-a4 .document-page {
+    min-height: 297mm !important;
+    max-width: 210mm !important;
+  }
+
+  /* Header and footer stay within margins */
+  .document-header,
+  .document-footer {
+    display: flex !important;
+    background: white !important;
+    border-color: #e5e5e5 !important;
+  }
+
+  .document-header {
+    padding-top: 0.5in !important; /* Start of 1-inch top margin */
+    padding-bottom: 12px !important;
+  }
+
+  .document-footer {
+    padding-top: 12px !important;
+    padding-bottom: 0.5in !important; /* End of 1-inch bottom margin */
+  }
+
+  /* Content area - 1 inch margins all sides */
+  .document-content {
+    padding-left: 1in !important;
+    padding-right: 1in !important;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+    min-height: auto !important;
+  }
+
+  /* Typography - ensure colors print correctly */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div {
+    color: #1a1a1a !important;
+  }
+
+  /* Preserve links but make them readable */
+  a {
+    color: #5b6ff5 !important;
+    text-decoration: underline;
+  }
+
+  /* Callouts - preserve background and borders */
+  .bg-\[\#f9fafb\],
+  [class*="bg-\["] {
+    background-color: #f9fafb !important;
+  }
+
+  .border-l-\[\#5b6ff5\],
+  [class*="border-l-\["] {
+    border-left-color: #5b6ff5 !important;
+  }
+
+  /* Page break controls */
+  .break-inside-avoid,
+  .break-inside-avoid-page {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Avoid widows and orphans */
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid !important;
+    break-after: avoid-page !important;
+  }
+
+  /* Signature blocks stay together */
+  .signature-block,
+  [class*="SignatureBlock"] {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Checklist items stay together */
+  .checklist-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Hide non-printable elements */
+  .print\:hidden,
+  .no-print,
+  button,
+  nav,
+  .navigation,
+  .sidebar {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  .print\:block {
+    display: block !important;
+  }
+
+  .print\:inline {
+    display: inline !important;
+  }
+
+  .print\:flex {
+    display: flex !important;
+  }
+
+  /* Signature lines */
+  .border-b-\[\#d4d4d4\],
+  [class*="border-b-\["] {
+    border-bottom-color: #d4d4d4 !important;
+  }
+
+  /* Remove shadows in print */
+  .shadow-theme-1,
+  .shadow-theme-2,
+  [class*="shadow-"] {
+    box-shadow: none !important;
+  }
+
+  /* Ensure proper spacing between sections */
+  section {
+    margin-bottom: 24px;
+  }
+
+  /* List styling */
+  ul,
+  ol {
+    page-break-inside: avoid !important;
+  }
+
+  li {
+    page-break-inside: avoid !important;
+  }
+
+  /* Field pairs */
+  .field-pair {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Cover page centering */
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 9in; /* Content area after margins */
+  }
+
+  /* Dividers */
+  hr,
+  .divider {
+    border-color: #e5e5e5 !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Metadata pills on cover */
+  .cover-pills span {
+    background-color: #f5f5f5 !important;
+    border-color: #e5e5e5 !important;
+    color: #2d2d2d !important;
+  }
+
+  /* Remove any rounded corners that might cause print issues */
+  * {
+    border-radius: 0 !important;
+  }
+
+  /* Exception: keep slight rounding for callouts and pills */
+  .callout,
+  [class*="rounded-\[8px\]"] {
+    border-radius: 4px !important;
+  }
+
+  .cover-pills span,
+  [class*="rounded-full"] {
+    border-radius: 999px !important;
+  }
+
+  /* Ensure monospace fonts print correctly */
+  .font-mono,
+  code,
+  pre {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Page counter */
+  .page-counter::after {
+    content: counter(page);
+  }
+
+  /* Prevent images from breaking across pages */
+  img {
+    page-break-inside: avoid !important;
+    max-width: 100% !important;
+  }
+
+  /* Tables - avoid if possible, but if present */
+  table {
+    page-break-inside: avoid !important;
+    width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Screen-only helper for print preview */
+@media screen {
+  .print-preview-mode .document-page {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+  }
+}
