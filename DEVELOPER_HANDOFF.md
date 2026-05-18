@@ -1,6 +1,6 @@
 # Developer Handoff — Guardrail HR
 
-The repo has been cleaned for navigation and documentation hygiene. Application source code has not been audited or refactored as part of this cleanup.Guardrail HR is informational compliance workflow tooling — not a legal advice product.
+The repo has been cleaned for navigation and documentation hygiene. Application source code has not been audited or refactored as part of this cleanup. Guardrail HR is informational compliance workflow tooling — not a legal advice product.
 
 ---
 
