@@ -1,7 +1,7 @@
 
 # Guardrail HR
 
-A high-fidelity MVP web application for Guardrail HR — a compliance and wage-hour guidance tool designed for HR professionals and small business owners.
+A high-fidelity MVP web application for Guardrail HR — an informational compliance workflow tool for small business owners and HR operators, starting with wage and hour risk visibility.
 
 ---
 
@@ -14,14 +14,37 @@ Guardrail HR is an informational tool that helps users:
 - Access templated HR documents and resources
 - Navigate common employment law scenarios with guided workflows
 
-It is built as a React + Vite SPA with a Tailwind CSS design system and shadcn/ui component library.
+Content is informational only. Scores and results are guidance tools, not legal determinations.
 
 ## What Guardrail HR Is Not
 
 - **Not a law firm.** Guardrail HR does not provide legal advice.
 - **Not a substitute for a licensed employment attorney.**
-- Content is informational only and should not be relied upon as legal counsel.
-- Assessment results and scores are guidance tools, not legal determinations.
+- Assessment results are informational only and should not be relied upon as legal counsel.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI Framework | React |
+| Build Tool | Vite |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Components | shadcn/ui |
+| Package Manager | pnpm |
+
+---
+
+## App Entry
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Vite entry file |
+| `src/` | Active application source (React, TypeScript, styles) |
+| `public/` | Static assets served at root |
+| `dist/` | Generated build output — do not edit manually |
 
 ---
 
@@ -42,17 +65,6 @@ pnpm install
 | `pnpm install` | Install all dependencies |
 | `pnpm dev` | Start the local development server |
 | `pnpm build` | Build for production (output to `dist/`) |
-
----
-
-## Project Structure
-
-```
-src/          # All application source code (React, TypeScript, styles)
-public/       # Static assets served at root
-docs/         # Internal documentation (product, UX, engineering, design, pricing, legal-safety, archive)
-dist/         # Production build output (generated — do not edit manually)
-```
 
 ---
 
@@ -78,7 +90,17 @@ All internal documentation lives under `docs/`:
 - **Do not edit legal or disclaimer language** without explicit review from a licensed attorney or product lead.
 - **Do not modify assessment scoring logic** (`src/`) without a documented review pass.
 - All compliance-adjacent content (overtime calculations, risk scores) must be validated before any production change.
-- Guardrail HR content is informational only. Do not represent it as legal advice in any user-facing copy.
+- Do not represent Guardrail HR content as legal advice in any user-facing copy.
+
+---
+
+## Pending Engineering Review
+
+The following items require a deliberate engineering decision before action is taken:
+
+- **`dist/` tracking** — Confirm whether `dist/` should remain tracked in git or be generated only during deployment (CI/CD). Do not remove until deployment behavior is confirmed.
+- **`src/` audit** — Active routes, demo components, and cleanup candidates have not been reviewed. No dead code removal has been performed.
+- **Typecheck / lint scripts** — Do not add `typecheck` or `lint` scripts to `package.json` until TypeScript and ESLint configurations are confirmed present and correct.
 
 ---
 
